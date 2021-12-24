@@ -87,7 +87,7 @@ module "example" {
   lambda_app_name      = "example_name"
   lambda_filename      = "example_code.py"
   api_gw_route_key     = "$default"
-  lambda_handler       = "may_code_method.lambda_handler"
+  lambda_handler       = "my_code_method.lambda_handler"
 }
 
 ```
