@@ -54,7 +54,10 @@
 
 ## About The Project
 
-[![terraform-module-aws-lambda-api-cloudwatch Screen Shot][product-screenshot]](./.assets/screenshot.png)
+<img src="./.assets/screenshot.svg" class="center" alt="AWS draw.io image" >
+
+
+
 
 The main purpose of this terraform module is to deploy an easy Lambda function with API trigger and Cloudwatch logging for both Lambda and API Getway.
 
