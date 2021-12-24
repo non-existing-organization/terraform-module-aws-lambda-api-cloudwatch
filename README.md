@@ -10,7 +10,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch">
-    <img src="https://raw.githubusercontent.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch/main/.assets/logo.png" alt="Main Logo" width="80" height="80">
+    <img src="https://raw.githubusercontent.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch/master/.assets/logo.png" alt="master Logo" width="80" height="80">
   </a>
 
   <h3 align="center">terraform-module-aws-lambda+api+cloudwatch</h3>
@@ -21,8 +21,6 @@
     <a href="./README.md"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch">View Demo</a>
-    ·
     <a href="https://github.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch/issues/new?labels=i%3A+bug&template=1-bug-report.md">Report Bug</a>
     ·
     <a href="https://github.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch/issues/new?labels=i%3A+enhancement&template=2-feature-request.md">Request Feature</a>
@@ -40,6 +38,12 @@
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
+- [Requirements](#requirements)
+- [Providers](#providers)
+- [Modules](#modules)
+- [Resources](#resources)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [License](#license)
@@ -52,29 +56,15 @@
 
 [![terraform-module-aws-lambda+api+cloudwatch Screen Shot][product-screenshot]](./.assets/screenshot.png)
 
-<!--
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need.
-
-Here's why:
-
-- Your time should be focused on creating something amazing. A project that solves a problem and helps others
-- You shouldn't be doing the same tasks over and over like creating a README from scratch
-- You should element DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue.
-
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
--->
+The main purpose of this terraform module is to deploy an easy Lambda function with API trigger and Cloudwatch logging for both Lambda and API Getway.
 
 ### Built With
 
-<!--
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-- [Bootstrap](https://getbootstrap.com)
-- [JQuery](https://jquery.com)
-- [Laravel](https://laravel.com)
--->
+- Terraform
+- AWS
+  - Lambda
+  - Cloudwatch
+  - API Gateway
 
 ---
 
@@ -82,62 +72,88 @@ This section should list any major frameworks that you built your project using.
 
 ## Getting Started
 
-<!--
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
--->
-
 ### Prerequisites
 
-<!--
-
-This is an example of how to list things you need to use the software and how to install them.
-
-- npm
-
-```sh
-npm install npm@latest -g
-```
--->
+- None
 
 ### Installation
 
-<!--
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+```terraform
+module "example" {
+  source               = "git::https://github.com/stiliajohny/terraform-module-aws-lambda-api-cloudwatch.git?ref=master"
+  lambda_app_name      = "example_name"
+  lambda_filename      = "example_code.py"
+  api_gw_route_key     = "$default"
+  lambda_handler       = "may_code_method.lambda_handler"
+}
 
-```sh
-git clone https://github.com/your_username_/Project-Name.git
 ```
-
-3. Install NPM packages
-
-```sh
-npm install
-```
-
-4. Enter your API in `config.js`
-
-```JS
-const API_KEY = 'ENTER YOUR API';
-```
--->
-
----
-
-<!-- USAGE EXAMPLES -->
 
 ## Usage
 
-<!--
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+<details>
+  <summary>Terraform-docs Output</summary>
 
-_For more examples, please refer to the [Documentation](https://example.com)_
--->
+## Requirements
 
----
+No requirements.
 
-<!-- ROADMAP -->
+## Providers
+
+| Name                                                         | Version |
+| ------------------------------------------------------------ | ------- |
+| <a name="provider_archive"></a> [archive](#provider_archive) | 2.2.0   |
+| <a name="provider_aws"></a> [aws](#provider_aws)             | 3.70.0  |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name                                                                                                                                                        | Type        |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| [aws_apigatewayv2_api.my-slack_event_handler](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_api)                 | resource    |
+| [aws_apigatewayv2_integration.my-slack_event_handler](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_integration) | resource    |
+| [aws_apigatewayv2_route.my-slack_event_handler](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_route)             | resource    |
+| [aws_apigatewayv2_stage.my-slack_event_handler](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/apigatewayv2_stage)             | resource    |
+| [aws_cloudwatch_log_group.my-slack_event_handler_api_gw](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group)  | resource    |
+| [aws_cloudwatch_log_group.my-slack_event_handler_lambda](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group)  | resource    |
+| [aws_iam_role_policy_attachment.lambda_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment)      | resource    |
+| [aws_lambda_function.my-slack_event_handler](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function)                   | resource    |
+| [aws_lambda_permission.my-slack_event_handler](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission)               | resource    |
+| [archive_file.zip](https://registry.terraform.io/providers/hashicorp/archive/latest/docs/data-sources/file)                                                 | data source |
+| [aws_iam_role.iam_for_lambda](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_role)                                      | data source |
+
+## Inputs
+
+| Name                                                                                                                     | Description                                                                                                                                                         | Type          | Default                                                 | Required |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------------------- | :------: |
+| <a name="input_api_gw_integration_methode"></a> [api_gw_integration_methode](#input_api_gw_integration_methode)          | The integration methode for the API Gateway.                                                                                                                        | `string`      | `"POST"`                                                |    no    |
+| <a name="input_api_gw_integration_type"></a> [api_gw_integration_type](#input_api_gw_integration_type)                   | The integration type for the API Gateway.                                                                                                                           | `string`      | `"AWS_PROXY"`                                           |    no    |
+| <a name="input_api_gw_protocol_type"></a> [api_gw_protocol_type](#input_api_gw_protocol_type)                            | The protocol type for the API Gateway.                                                                                                                              | `string`      | `"HTTP"`                                                |    no    |
+| <a name="input_api_gw_route_key"></a> [api_gw_route_key](#input_api_gw_route_key)                                        | The route key for the route. For HTTP APIs, the route key can be either `$default`, or a combination of an HTTP method and resource path, for example, `GET /pets`. | `string`      | `"$default"`                                            |    no    |
+| <a name="input_aws_region"></a> [aws_region](#input_aws_region)                                                          | The AWS region to create things in.                                                                                                                                 | `string`      | `"us-east-1"`                                           |    no    |
+| <a name="input_cloudwatch_log_retention_days"></a> [cloudwatch_log_retention_days](#input_cloudwatch_log_retention_days) | The number of days to retain logs in CloudWatch.                                                                                                                    | `number`      | `14`                                                    |    no    |
+| <a name="input_lambda_app_description"></a> [lambda_app_description](#input_lambda_app_description)                      | The description of the Lambda function.                                                                                                                             | `string`      | `"A simple Lambda function that says hello."`           |    no    |
+| <a name="input_lambda_app_name"></a> [lambda_app_name](#input_lambda_app_name)                                           | The name of the Lambda function.                                                                                                                                    | `string`      | n/a                                                     |   yes    |
+| <a name="input_lambda_architecture"></a> [lambda_architecture](#input_lambda_architecture)                               | The architecture of the lambda function                                                                                                                             | `list(any)`   | <pre>[<br> "x86_64"<br>]</pre>                          |    no    |
+| <a name="input_lambda_env_variables"></a> [lambda_env_variables](#input_lambda_env_variables)                            | The environment variables to pass to the Lambda function.                                                                                                           | `map(string)` | <pre>{<br> "variable_name": "variable_value"<br>}</pre> |    no    |
+| <a name="input_lambda_filename"></a> [lambda_filename](#input_lambda_filename)                                           | The name of the Lambda function's file.                                                                                                                             | `string`      | n/a                                                     |   yes    |
+| <a name="input_lambda_handler"></a> [lambda_handler](#input_lambda_handler)                                              | The name of the Lambda function's handler.                                                                                                                          | `string`      | n/a                                                     |   yes    |
+| <a name="input_lambda_memory_size"></a> [lambda_memory_size](#input_lambda_memory_size)                                  | The amount of memory to allocate to the lambda function                                                                                                             | `number`      | `128`                                                   |    no    |
+| <a name="input_lambda_runtime"></a> [lambda_runtime](#input_lambda_runtime)                                              | The runtime to use for the Lambda function.                                                                                                                         | `string`      | `"python3.9"`                                           |    no    |
+| <a name="input_tags"></a> [tags](#input_tags)                                                                            | (Optional) A mapping of tags to assign to the bucket.                                                                                                               | `map(any)`    | `{}`                                                    |    no    |
+
+## Outputs
+
+| Name                                                                                            | Description                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| <a name="output_api_base_url"></a> [api_base_url](#output_api_base_url)                         | Base URL for API Gateway stage.                 |
+| <a name="output_iam_for_lamda"></a> [iam_for_lamda](#output_iam_for_lamda)                      | The name of the savings_plan_utilization budget |
+| <a name="output_lambda_function_name"></a> [lambda_function_name](#output_lambda_function_name) | Name of the Lambda function.                    |
+
+</details>
 
 ## Roadmap
 
