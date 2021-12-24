@@ -9,11 +9,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch">
-    <img src="https://raw.githubusercontent.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch/master/.assets/logo.png" alt="master Logo" width="80" height="80">
+  <a href="https://github.com/stiliajohny/terraform-module-aws-lambda-api-cloudwatch">
+    <img src="https://github.com/stiliajohny/terraform-module-aws-lambda-api-cloudwatch/raw/master/.assets/logo.png" alt="master Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">terraform-module-aws-lambda+api+cloudwatch</h3>
+  <h3 align="center">terraform-module-aws-lambda-api-cloudwatch</h3>
 
   <p align="center">
     Easy Deploy Lambda, API and Cloudwatch
@@ -21,9 +21,9 @@
     <a href="./README.md"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch/issues/new?labels=i%3A+bug&template=1-bug-report.md">Report Bug</a>
+    <a href="https://github.com/stiliajohny/terraform-module-aws-lambda-api-cloudwatch/issues/new?labels=i%3A+bug&template=1-bug-report.md">Report Bug</a>
     ·
-    <a href="https://github.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch/issues/new?labels=i%3A+enhancement&template=2-feature-request.md">Request Feature</a>
+    <a href="https://github.com/stiliajohny/terraform-module-aws-lambda-api-cloudwatch/issues/new?labels=i%3A+enhancement&template=2-feature-request.md">Request Feature</a>
   </p>
 </p>
 
@@ -54,7 +54,7 @@
 
 ## About The Project
 
-[![terraform-module-aws-lambda+api+cloudwatch Screen Shot][product-screenshot]](./.assets/screenshot.png)
+[![terraform-module-aws-lambda-api-cloudwatch Screen Shot][product-screenshot]](./.assets/screenshot.png)
 
 The main purpose of this terraform module is to deploy an easy Lambda function with API trigger and Cloudwatch logging for both Lambda and API Getway.
 
@@ -157,7 +157,7 @@ No modules.
 
 ## Roadmap
 
-See the [open issues](https://github.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/stiliajohny/terraform-module-aws-lambda-api-cloudwatch/issues) for a list of proposed features (and known issues).
 
 ---
 
@@ -205,16 +205,16 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/stiliajohny/terraform-module-aws-lambda+api+cloudwatch.svg?style=for-the-badge
-[contributors-url]: https://github.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/stiliajohny/terraform-module-aws-lambda+api+cloudwatch.svg?style=for-the-badge
-[forks-url]: https://github.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch/network/members
-[stars-shield]: https://img.shields.io/github/stars/stiliajohny/terraform-module-aws-lambda+api+cloudwatch.svg?style=for-the-badge
-[stars-url]: https://github.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch/stargazers
-[issues-shield]: https://img.shields.io/github/issues/stiliajohny/terraform-module-aws-lambda+api+cloudwatch.svg?style=for-the-badge
-[issues-url]: https://github.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch/issues
-[license-shield]: https://img.shields.io/github/license/stiliajohny/terraform-module-aws-lambda+api+cloudwatch?style=for-the-badge
-[license-url]: https://github.com/stiliajohny/terraform-module-aws-lambda+api+cloudwatch/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/stiliajohny/terraform-module-aws-lambda-api-cloudwatch.svg?style=for-the-badge
+[contributors-url]: https://github.com/stiliajohny/terraform-module-aws-lambda-api-cloudwatch/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/stiliajohny/terraform-module-aws-lambda-api-cloudwatch.svg?style=for-the-badge
+[forks-url]: https://github.com/stiliajohny/terraform-module-aws-lambda-api-cloudwatch/network/members
+[stars-shield]: https://img.shields.io/github/stars/stiliajohny/terraform-module-aws-lambda-api-cloudwatch.svg?style=for-the-badge
+[stars-url]: https://github.com/stiliajohny/terraform-module-aws-lambda-api-cloudwatch/stargazers
+[issues-shield]: https://img.shields.io/github/issues/stiliajohny/terraform-module-aws-lambda-api-cloudwatch.svg?style=for-the-badge
+[issues-url]: https://github.com/stiliajohny/terraform-module-aws-lambda-api-cloudwatch/issues
+[license-shield]: https://img.shields.io/github/license/stiliajohny/terraform-module-aws-lambda-api-cloudwatch?style=for-the-badge
+[license-url]: https://github.com/stiliajohny/terraform-module-aws-lambda-api-cloudwatch/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/johnstilia/
 [product-screenshot]: .assets/screenshot.png
