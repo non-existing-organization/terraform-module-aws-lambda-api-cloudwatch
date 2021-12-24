@@ -54,7 +54,7 @@
 
 ## About The Project
 
-<img src="./.assets/screenshot.svg" class="center" alt="AWS draw.io image" >
+<img src="https://github.com/stiliajohny/terraform-module-aws-lambda-api-cloudwatch/raw/master/.assets/screenshot.svg" class="center" alt="AWS draw.io image" >
 
 
 
