@@ -1,4 +1,4 @@
-logo: https://github.com/stiliajohny/terraform-module-aws-lambda-api-cloudwatch/raw/master/.assets/logo.png
+logo: https://raw.githubusercontent.com/stiliajohny/terraform-module-aws-lambda-api-cloudwatch/master/.assets/screenshot.svg
 show_downloads: true
 theme: jekyll-theme-minimal
 markdown: kramdown
