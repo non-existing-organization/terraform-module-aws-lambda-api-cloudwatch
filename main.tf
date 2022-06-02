@@ -11,7 +11,8 @@ resource "aws_lambda_function" "my-slack_event_handler" {
 
   architectures = var.lambda_architecture
   memory_size   = var.lambda_memory_size
-  role          = data.aws_iam_role.iam_for_lambda.arn
+  //role          = data.aws_iam_role.iam_for_lambda.arn
+  role          = aws_iam_role.iam_for_lambda.arn
   tags          = var.tags
 
   environment {
@@ -34,9 +35,31 @@ resource "aws_cloudwatch_log_group" "my-slack_event_handler_api_gw" {
   tags              = var.tags
 }
 
+//Create lambda execution role
+resource "aws_iam_role" "iam_for_lambda" {
+  name = "iam_for_lambda"
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+}
+
 // Attaches a Managed IAM Policy to an IAM role
 resource "aws_iam_role_policy_attachment" "lambda_policy" {
-  role       = data.aws_iam_role.iam_for_lambda.name
+  //role       = data.aws_iam_role.iam_for_lambda.name
+  role       = aws_iam_role.iam_for_lambda.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
