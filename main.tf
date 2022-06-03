@@ -11,7 +11,6 @@ resource "aws_lambda_function" "my-slack_event_handler" {
 
   architectures = var.lambda_architecture
   memory_size   = var.lambda_memory_size
-  //role          = data.aws_iam_role.iam_for_lambda.arn
   role          = aws_iam_role.iam_for_lambda.arn
   tags          = var.tags
 
@@ -58,7 +57,6 @@ EOF
 
 // Attaches a Managed IAM Policy to an IAM role
 resource "aws_iam_role_policy_attachment" "lambda_policy" {
-  //role       = data.aws_iam_role.iam_for_lambda.name
   role       = aws_iam_role.iam_for_lambda.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
