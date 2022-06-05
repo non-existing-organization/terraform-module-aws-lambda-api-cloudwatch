@@ -1,6 +1,6 @@
 output "iam_for_lamda" {
   value       = aws_iam_role.lambda_function_execution_role.arn
-  description = "The name of the savings_plan_utilization budget"
+  description = "The name of the lambda execution role"
 }
 
 output "lambda_function_name" {
