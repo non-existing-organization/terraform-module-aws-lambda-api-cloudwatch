@@ -1,5 +1,5 @@
 output "iam_for_lamda" {
-  value       = data.aws_iam_role.iam_for_lambda.arn
+  value       = aws_iam_role.iam_for_lambda.arn
   description = "The name of the savings_plan_utilization budget"
 }
 
