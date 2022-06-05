@@ -88,3 +88,9 @@ variable "lambda_filename" {
   type        = string
   description = "The name of the Lambda function's file."
 }
+
+variable "lambda_execution_role_name" {
+  type = string
+  description = "The name of the aws lambda execution role"
+  default = "iam_for_lambda"
+}

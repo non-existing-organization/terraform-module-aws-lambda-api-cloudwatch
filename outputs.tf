@@ -1,15 +1,15 @@
 output "iam_for_lamda" {
-  value       = aws_iam_role.iam_for_lambda.arn
+  value       = aws_iam_role.lambda_function_execution_role.arn
   description = "The name of the savings_plan_utilization budget"
 }
 
 output "lambda_function_name" {
   description = "Name of the Lambda function."
-  value       = aws_lambda_function.my-slack_event_handler.function_name
+  value       = aws_lambda_function.lambda_function.function_name
 }
 
 output "api_base_url" {
   description = "Base URL for API Gateway stage."
 
-  value = aws_apigatewayv2_stage.my-slack_event_handler.invoke_url
+  value = aws_apigatewayv2_stage.api_gateway_stage.invoke_url
 }

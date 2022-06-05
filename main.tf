@@ -1,5 +1,5 @@
 // Define lambda for my-slack_event_handler
-resource "aws_lambda_function" "my-slack_event_handler" {
+resource "aws_lambda_function" "lambda_function" {
   function_name = var.lambda_app_name
   description   = var.lambda_app_description
 
@@ -11,7 +11,7 @@ resource "aws_lambda_function" "my-slack_event_handler" {
 
   architectures = var.lambda_architecture
   memory_size   = var.lambda_memory_size
-  role          = aws_iam_role.iam_for_lambda.arn
+  role          = aws_iam_role.lambda_function_execution_role.arn
   tags          = var.tags
 
   environment {
@@ -20,23 +20,24 @@ resource "aws_lambda_function" "my-slack_event_handler" {
 }
 
 //Provides a CloudWatch Log Group resource for the Lambda function
-resource "aws_cloudwatch_log_group" "my-slack_event_handler_lambda" {
-  name              = "/aws/lambda/${aws_lambda_function.my-slack_event_handler.function_name}"
+resource "aws_cloudwatch_log_group" "cloudwatch_log_group_lambda_function" {
+  name              = "/aws/lambda/${aws_lambda_function.lambda_function.function_name}"
   retention_in_days = var.cloudwatch_log_retention_days
   tags              = var.tags
 }
 
 //Provides a CloudWatch Log Group resource for the API Gateway
-resource "aws_cloudwatch_log_group" "my-slack_event_handler_api_gw" {
-  name = "/aws/api_gw/${aws_apigatewayv2_api.my-slack_event_handler.name}"
+resource "aws_cloudwatch_log_group" "cloudwatch_log_group_api_gateway" {
+  name = "/aws/api_gw/${aws_apigatewayv2_api.api_gateway.name}"
 
   retention_in_days = var.cloudwatch_log_retention_days
   tags              = var.tags
 }
 
 //Create lambda execution role
-resource "aws_iam_role" "iam_for_lambda" {
-  name = "iam_for_lambda"
+resource "aws_iam_role" "lambda_function_execution_role" {
+  //name = "iam_for_lambda"
+  name = var.lambda_execution_role_name
 
   assume_role_policy = <<EOF
 {
@@ -57,27 +58,27 @@ EOF
 
 // Attaches a Managed IAM Policy to an IAM role
 resource "aws_iam_role_policy_attachment" "lambda_policy" {
-  role       = aws_iam_role.iam_for_lambda.name
+  role       = aws_iam_role.lambda_function_execution_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
 // Manages an Amazon API Gateway Version 2 API.
-resource "aws_apigatewayv2_api" "my-slack_event_handler" {
+  resource "aws_apigatewayv2_api" "api_gateway" {
   name          = var.lambda_app_name
   protocol_type = var.api_gw_protocol_type
   tags          = var.tags
 }
 
 // Manages an Amazon API Gateway Version 2 stage
-resource "aws_apigatewayv2_stage" "my-slack_event_handler" {
-  api_id = aws_apigatewayv2_api.my-slack_event_handler.id
+  resource "aws_apigatewayv2_stage" "api_gateway_stage" {
+  api_id = aws_apigatewayv2_api.api_gateway.id
 
   name        = var.lambda_app_name
   auto_deploy = true
   tags        = var.tags
 
   access_log_settings {
-    destination_arn = aws_cloudwatch_log_group.my-slack_event_handler_lambda.arn
+    destination_arn = aws_cloudwatch_log_group.cloudwatch_log_group_api_gateway.arn
 
     format = jsonencode({
       requestId               = "$context.requestId"
@@ -96,27 +97,28 @@ resource "aws_apigatewayv2_stage" "my-slack_event_handler" {
 }
 
 // Manages an Amazon API Gateway Version 2 integration
-resource "aws_apigatewayv2_integration" "my-slack_event_handler" {
-  api_id = aws_apigatewayv2_api.my-slack_event_handler.id
+  resource "aws_apigatewayv2_integration" "api_gateway_integration" {
+  api_id = aws_apigatewayv2_api.api_gateway.id
 
-  integration_uri    = aws_lambda_function.my-slack_event_handler.invoke_arn
+  integration_uri    = aws_lambda_function.lambda_function.invoke_arn
   integration_type   = var.api_gw_integration_type
   integration_method = var.api_gw_integration_methode
 }
 
-resource "aws_apigatewayv2_route" "my-slack_event_handler" {
-  api_id = aws_apigatewayv2_api.my-slack_event_handler.id
+  resource "aws_apigatewayv2_route" "api_gateway_route" {
+  api_id = aws_apigatewayv2_api.api_gateway.id
 
   route_key = var.api_gw_route_key
-  target    = "integrations/${aws_apigatewayv2_integration.my-slack_event_handler.id}"
+  target    = "integrations/${aws_apigatewayv2_integration.api_gateway_integration.id}"
 }
 
 // Gives an external source (like an EventBridge Rule, SNS, or S3) permission to access the Lambda function.
-resource "aws_lambda_permission" "my-slack_event_handler" {
+//resource "aws_lambda_permission" "my-slack_event_handler" {
+  resource "aws_lambda_permission" "api_gateway_lambda_permission" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.my-slack_event_handler.function_name
+  function_name = aws_lambda_function.lambda_function.function_name
   principal     = "apigateway.amazonaws.com"
 
-  source_arn = "${aws_apigatewayv2_api.my-slack_event_handler.execution_arn}/*/*"
+  source_arn = "${aws_apigatewayv2_api.api_gateway.execution_arn}/*/*"
 }
