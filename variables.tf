@@ -90,7 +90,23 @@ variable "lambda_filename" {
 }
 
 variable "lambda_execution_role_name" {
-  type = string
+  type        = string
   description = "The name of the aws lambda execution role"
-  default = "iam_for_lambda"
+  default     = "iam_for_lambda"
+}
+
+# Variables to deploy specific set of resources
+variable "api_gateway" {
+  type    = bool
+  default = false
+}
+
+variable "lambda_cloudwatch" {
+  type    = bool
+  default = false
+}
+
+variable "api_gateway_cloudwatch" {
+  type    = bool
+  default = false
 }
