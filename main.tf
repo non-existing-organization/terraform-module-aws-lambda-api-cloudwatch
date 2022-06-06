@@ -82,7 +82,7 @@ resource "aws_apigatewayv2_stage" "api_gateway_stage" {
   auto_deploy = true
   tags        = var.tags
 
-  dynamic "access_log_settings" {
+  /* dynamic "access_log_settings" {
     for_each = aws_cloudwatch_log_group.cloudwatch_log_group_api_gateway
     content {
         #destination_arn = aws_cloudwatch_log_group.cloudwatch_log_group_api_gateway[0].arn
@@ -102,9 +102,9 @@ resource "aws_apigatewayv2_stage" "api_gateway_stage" {
           }
         )
     }
-  }
+  } */
 
-  /* access_log_settings {
+  access_log_settings {
     destination_arn = aws_cloudwatch_log_group.cloudwatch_log_group_api_gateway[0].arn
 
     format = jsonencode({
@@ -120,7 +120,7 @@ resource "aws_apigatewayv2_stage" "api_gateway_stage" {
       integrationErrorMessage = "$context.integrationErrorMessage"
       }
     )
-  } */
+  }
 }
 
 // Manages an Amazon API Gateway Version 2 integration
