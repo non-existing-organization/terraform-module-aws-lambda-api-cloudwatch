@@ -29,8 +29,7 @@ resource "aws_cloudwatch_log_group" "cloudwatch_log_group_lambda_function" {
 
 //Provides a CloudWatch Log Group resource for the API Gateway
 resource "aws_cloudwatch_log_group" "cloudwatch_log_group_api_gateway" {
-  #count = (length(aws_apigatewayv2_api.api_gateway) == 1 && var.api_gateway_cloudwatch ? 1 : 0)
-  count = (length(aws_apigatewayv2_api.api_gateway) == 1 ? 1 : 0)
+  count = (length(aws_apigatewayv2_api.api_gateway) == 1 && var.api_gateway_cloudwatch ? 1 : 0)
   name  = "/aws/api_gw/${aws_apigatewayv2_api.api_gateway[0].name}"
 
   retention_in_days = var.cloudwatch_log_retention_days
@@ -39,7 +38,6 @@ resource "aws_cloudwatch_log_group" "cloudwatch_log_group_api_gateway" {
 
 //Create lambda execution role
 resource "aws_iam_role" "lambda_function_execution_role" {
-  //name = "iam_for_lambda"
   name = var.lambda_execution_role_name
 
   assume_role_policy = <<EOF
@@ -81,11 +79,11 @@ resource "aws_apigatewayv2_stage" "api_gateway_stage" {
   name        = var.lambda_app_name
   auto_deploy = true
   tags        = var.tags
+  lifecycle {ignore_changes = [access_log_settings]}
 
-  /* dynamic "access_log_settings" {
+  dynamic "access_log_settings" {
     for_each = aws_cloudwatch_log_group.cloudwatch_log_group_api_gateway
     content {
-        #destination_arn = aws_cloudwatch_log_group.cloudwatch_log_group_api_gateway[0].arn
         destination_arn = aws_cloudwatch_log_group.cloudwatch_log_group_api_gateway[0].arn
 
         format = jsonencode({
@@ -102,24 +100,6 @@ resource "aws_apigatewayv2_stage" "api_gateway_stage" {
           }
         )
     }
-  } */
-
-  access_log_settings {
-    destination_arn = aws_cloudwatch_log_group.cloudwatch_log_group_api_gateway[0].arn
-
-    format = jsonencode({
-      requestId               = "$context.requestId"
-      sourceIp                = "$context.identity.sourceIp"
-      requestTime             = "$context.requestTime"
-      protocol                = "$context.protocol"
-      httpMethod              = "$context.httpMethod"
-      resourcePath            = "$context.resourcePath"
-      routeKey                = "$context.routeKey"
-      status                  = "$context.status"
-      responseLength          = "$context.responseLength"
-      integrationErrorMessage = "$context.integrationErrorMessage"
-      }
-    )
   }
 }
 

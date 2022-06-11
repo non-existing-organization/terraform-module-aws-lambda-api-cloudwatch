@@ -106,7 +106,7 @@ variable "lambda_cloudwatch" {
   default = false
 }
 
-/* variable "api_gateway_cloudwatch" {
+variable "api_gateway_cloudwatch" {
   type    = bool
   default = false
-} */
+}
