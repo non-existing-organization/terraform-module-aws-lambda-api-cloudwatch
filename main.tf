@@ -14,6 +14,10 @@ resource "aws_lambda_function" "lambda_function" {
   role          = aws_iam_role.lambda_function_execution_role.arn
   tags          = var.tags
 
+  tracing_config {
+  mode = "Active"
+  }
+
   environment {
     variables = var.lambda_env_variables
   }
