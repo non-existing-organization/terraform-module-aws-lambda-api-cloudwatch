@@ -79,26 +79,26 @@ resource "aws_apigatewayv2_stage" "api_gateway_stage" {
   name        = var.lambda_app_name
   auto_deploy = true
   tags        = var.tags
-  lifecycle {ignore_changes = [access_log_settings]}
+  lifecycle { ignore_changes = [access_log_settings] }
 
   dynamic "access_log_settings" {
     for_each = aws_cloudwatch_log_group.cloudwatch_log_group_api_gateway
     content {
-        destination_arn = aws_cloudwatch_log_group.cloudwatch_log_group_api_gateway[0].arn
+      destination_arn = aws_cloudwatch_log_group.cloudwatch_log_group_api_gateway[0].arn
 
-        format = jsonencode({
-          requestId               = "$context.requestId"
-          sourceIp                = "$context.identity.sourceIp"
-          requestTime             = "$context.requestTime"
-          protocol                = "$context.protocol"
-          httpMethod              = "$context.httpMethod"
-          resourcePath            = "$context.resourcePath"
-          routeKey                = "$context.routeKey"
-          status                  = "$context.status"
-          responseLength          = "$context.responseLength"
-          integrationErrorMessage = "$context.integrationErrorMessage"
-          }
-        )
+      format = jsonencode({
+        requestId               = "$context.requestId"
+        sourceIp                = "$context.identity.sourceIp"
+        requestTime             = "$context.requestTime"
+        protocol                = "$context.protocol"
+        httpMethod              = "$context.httpMethod"
+        resourcePath            = "$context.resourcePath"
+        routeKey                = "$context.routeKey"
+        status                  = "$context.status"
+        responseLength          = "$context.responseLength"
+        integrationErrorMessage = "$context.integrationErrorMessage"
+        }
+      )
     }
   }
 }
