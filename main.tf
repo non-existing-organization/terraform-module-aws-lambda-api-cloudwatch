@@ -87,7 +87,7 @@ resource "aws_apigatewayv2_stage" "api_gateway_stage" {
       destination_arn = aws_cloudwatch_log_group.cloudwatch_log_group_api_gateway[0].arn
 
       format = jsonencode({
-        requestId         = "$context.requestId"
+        requestId               = "$context.requestId"
         sourceIp                = "$context.identity.sourceIp"
         requestTime             = "$context.requestTime"
         protocol                = "$context.protocol"
