@@ -44,6 +44,7 @@
 - [Resources](#resources)
 - [Inputs](#inputs)
 - [Outputs](#outputs)
+- [Costs](#costs-with-infracost)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [License](#license)
@@ -157,6 +158,20 @@ No modules.
 | <a name="output_lambda_function_name"></a> [lambda_function_name](#output_lambda_function_name) | Name of the Lambda function.                    |
 
 </details>
+
+
+## Costs
+
+You can use the tool [infracost](https://www.infracost.io/) to see an estimate how much the deployment of resources might cost depending on the usage.
+
+The tool can be installed via this [doc](https://www.infracost.io/docs/#1-install-infracost)
+
+After that you can issue the command:
+
+```bash
+infracost.exe breakdown --path . --show-skipped
+```
+
 
 ## Roadmap
 
