@@ -10,5 +10,5 @@ output "lambda_function_name" {
 
 output "api_base_url" {
   description = "Base URL for API Gateway stage."
-  value = length(aws_apigatewayv2_stage.api_gateway_stage) == 1 ? aws_apigatewayv2_stage.api_gateway_stage[0].invoke_url: null
+  value       = length(aws_apigatewayv2_stage.api_gateway_stage) == 1 ? aws_apigatewayv2_stage.api_gateway_stage[0].invoke_url : null
 }

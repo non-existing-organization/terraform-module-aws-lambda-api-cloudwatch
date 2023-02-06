@@ -1,0 +1,20 @@
+name: Pipeline
+on: [push]
+jobs:
+  Tfsec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: tfsec
+        uses: aquasecurity/tfsec-action@v1.0.0
+
+  Validations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hashicorp/setup-terraform@v2
+      - uses: actions/checkout@v3
+
+      - name: Run Terraform fmt   
+        run: terraform fmt -check
+        continue-on-error: true
